@@ -1,17 +1,26 @@
+//==============================================================================
 //
 //  main.m
 //  PickerSamplePad
 //
 //  Created by Troy Gaul on 8/17/10.
-//  Copyright 2010 InfinitApps. All rights reserved.
+//	
+//  Copyright (c) 2011 InfinitApps LLC - http://infinitapps.com
+//	Some rights reserved: http://opensource.org/licenses/MIT
 //
+//==============================================================================
 
 #import <UIKit/UIKit.h>
 
-int main(int argc, char *argv[]) {
-    
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, nil);
-    [pool release];
-    return retVal;
+//------------------------------------------------------------------------------
+
+int main( int argc, char* argv[] )
+{
+	NSAutoreleasePool* pool = [ [ NSAutoreleasePool alloc ] init ];
+	int retVal = UIApplicationMain( argc, argv, nil, nil );
+	[ pool release ];
+	
+	return retVal;
 }
+
+//------------------------------------------------------------------------------
