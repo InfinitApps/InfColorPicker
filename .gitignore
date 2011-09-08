@@ -13,5 +13,8 @@ xcuserdata/
 # Generated files
 *.[oa]
 
+# Hg
+.hg*
+
 # Backup files
 *~.nib
