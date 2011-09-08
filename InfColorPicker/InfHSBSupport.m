@@ -129,7 +129,7 @@ void RGBToHSV( float r, float g, float b, float* h, float* s, float* v, BOOL pre
 			hue = ( g - b ) / delta;
 		else if( g == max )
 			hue = 2 + ( b - r ) / delta;
-		else if( b == max )
+		else
 			hue = 4 + ( r - g ) / delta;
 
 		hue /= 6.0f;
