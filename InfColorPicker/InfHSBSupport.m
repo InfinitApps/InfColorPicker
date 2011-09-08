@@ -81,7 +81,7 @@ void HSVtoRGB( float h, float s, float v, float* r, float* g, float* b )
 
 //------------------------------------------------------------------------------
 
-void RGBToHSV( float r, float g, float b, float* h, float* s, float* v )
+void RGBToHSV( float r, float g, float b, float* h, float* s, float* v, BOOL preserveHS )
 {		
 	float max = r;
 	if( max < g )
@@ -101,32 +101,44 @@ void RGBToHSV( float r, float g, float b, float* h, float* s, float* v )
 	
 	// Saturation
 	
-	if( max != 0.0f )
-		*s = ( max - min ) / max;
-	else
-		*s = 0.0f;
-
+	float sat;
+	
+	if( max != 0.0f ) {
+		sat = ( max - min ) / max;
+		*s = sat;
+	}
+	else {
+		sat = 0.0f;
+		if( !preserveHS )
+			*s = 0.0f;		// Black, so sat is undefined, use 0
+	}
+	
 	// Hue
 	
 	float delta;
-	if( *s == 0.0f ) {
-		//*h = 0.0f;		// Hue is undefined, use 0
-		// tgaul: don't change hue, assume it's been initialized
+	if( sat == 0.0f ) {
+		if( !preserveHS )
+			*h = 0.0f;		// No color, so hue is undefined, use 0
 	}
 	else {
 		delta = max - min;
-	
+		
+		float hue;
+		
 		if( r == max )
-			*h = ( g - b ) / delta;
+			hue = ( g - b ) / delta;
 		else if( g == max )
-			*h = 2 + ( b - r ) / delta;
-		else if (b == max)
-			*h = 4 + ( r - g ) / delta;
+			hue = 2 + ( b - r ) / delta;
+		else if( b == max )
+			hue = 4 + ( r - g ) / delta;
 
-		*h /= 6.0f;
+		hue /= 6.0f;
 
-		if( *h < 0.0f )
-			*h += 1.0f;
+		if( hue < 0.0f )
+			hue += 1.0f;
+		
+		if( !preserveHS || fabsf( hue - *h ) != 1.0f )
+			*h = hue;	// 0.0 and 1.0 hues are actually both the same (red)
 	}
 }
 

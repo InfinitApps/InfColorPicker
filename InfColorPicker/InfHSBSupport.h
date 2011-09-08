@@ -28,7 +28,8 @@ float pin( float minValue, float value, float maxValue );
 
 void HSVtoRGB( float h, float s, float v, float* r, float* g, float* b );
 
-void RGBToHSV( float r, float g, float b, float* h, float* s, float* v );
+void RGBToHSV( float r, float g, float b, float* h, float* s, float* v, 
+			   BOOL preserveHS );
 
 //------------------------------------------------------------------------------
 

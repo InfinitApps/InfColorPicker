@@ -25,13 +25,17 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 	const CGFloat* components = CGColorGetComponents( colorRef );
 	size_t numComponents = CGColorGetNumberOfComponents( colorRef );
 	
+	CGFloat r, g, b;
 	if( numComponents < 3 ) {
-		CGFloat grayscale = components[ 0 ];
-		RGBToHSV( grayscale, grayscale, grayscale, h, s, v );
+		r = g = b = components[ 0 ];
 	}
 	else {
-		RGBToHSV( components[ 0 ], components[ 1 ], components[ 2 ], h, s, v );
+		r = components[ 0 ];
+		g = components[ 1 ];
+		b = components[ 2 ];
 	}
+	
+	RGBToHSV( r, g, b, h, s, v, YES );
 }
 
 //==============================================================================
@@ -224,18 +228,20 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 {
 	// This is used when code internally causes the update.  We do this so that
 	// we don't cause push-back on the HSV values in case there are rounding
-	// differences or anything.
+	// differences or anything.  However, given protections from hue and sat
+	// changes when not necessary elsewhere it's probably not actually needed.
 	
 	[ self willChangeValueForKey: @"resultColor" ];
 	
-	self.resultColor = [ UIColor colorWithHue: hue saturation: saturation 
-								   brightness: brightness alpha: 1.0f ];
+	[ resultColor release ];
+	resultColor = [ [ UIColor colorWithHue: hue saturation: saturation 
+								brightness: brightness alpha: 1.0f ] retain ];
+	
+	[ self didChangeValueForKey: @"resultColor" ];
 	
 	resultColorView.backgroundColor = resultColor;
-
+	
 	[ self informDelegateDidChangeColor ];
-
-	[ self didChangeValueForKey: @"resultColor" ];
 }
 
 //------------------------------------------------------------------------------
