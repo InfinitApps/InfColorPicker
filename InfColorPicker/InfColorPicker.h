@@ -38,11 +38,11 @@ to have an object that implements one of the methods in the
 Example
 -------
 
-	- (IBAction) changeBackgroundColor
+	- (void) changeColor
 	{
 		InfColorPickerController* picker = [ InfColorPickerController colorPickerViewController ];
 		
-		picker.sourceColor = self.view.backgroundColor;
+		picker.sourceColor = self.color;
 		picker.delegate = self;
 		
 		[ picker presentModallyOverViewController: self ];
@@ -50,7 +50,7 @@ Example
 
 	- (void) colorPickerControllerDidFinish: (InfColorPickerController*) picker
 	{
-		self.view.backgroundColor = picker.resultColor;
+		self.color = picker.resultColor;
 		
 		[ self dismissModalViewControllerAnimated: YES ];
 	}
