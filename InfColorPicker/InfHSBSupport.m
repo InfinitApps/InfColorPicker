@@ -229,6 +229,38 @@ CGImageRef createSaturationBrightnessSquareContentImageWithHue( float hue )
 
 //------------------------------------------------------------------------------
 
+CGImageRef createCheckerPatternImage()
+{
+    UInt8 data[ 16 * 16 * 4 ];
+    
+    CGContextRef context = createBGRxImageContext( 16, 16, data );
+    
+    if( context == nil )
+		return nil;
+    
+    unsigned int* ptr = CGBitmapContextGetData( context );
+    
+    for (int y = 0; y < 16 ; y ++) {
+        for (int x = 0; x < 16; x++) {
+            if ((x < 8 && y < 8) || (x >= 8 && y >= 8)) 
+            {
+                ptr[y*16 + x] = 0xFFBBBBBB;
+            }
+            else
+            {
+                ptr[y*16 + x] = 0xFFFFFFFF;
+            }
+            
+        }
+    }
+    
+    CGImageRef image = CGBitmapContextCreateImage( context );
+	
+	CGContextRelease( context );
+	
+	return image;
+}
+
 CGImageRef createHSVBarContentImage( InfComponentIndex barComponentIndex, float hsv[ 3 ] )
 {
 	UInt8 data[ 256 * 4 ];

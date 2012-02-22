@@ -14,6 +14,7 @@
 
 #import "InfColorBarPicker.h"
 #import "InfColorSquarePicker.h"
+#import "infAlphaBarPicker.h"
 #import "InfHSBSupport.h"
 
 //------------------------------------------------------------------------------
@@ -58,6 +59,8 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 @implementation InfColorPickerController
 
 //------------------------------------------------------------------------------
+@synthesize alphaView;
+@synthesize alphaPicker;
 
 @synthesize delegate, resultColor, sourceColor;
 @synthesize barView, squareView;
@@ -98,6 +101,8 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 	[ sourceColor release ];
 	[ resultColor release ];
 	
+    [alphaPicker release];
+    [alphaView release];
 	[ super dealloc ];
 }
 
@@ -129,7 +134,9 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 	squareView.hue = hue;
 	squarePicker.hue = hue;
 	squarePicker.value = CGPointMake( saturation, brightness );
-
+    alphaPicker.value = alpha;
+    
+    
 	if( sourceColor )
 		sourceColorView.backgroundColor = sourceColor;
 	
@@ -141,6 +148,8 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 - (void) viewDidUnload
 {
+    [self setAlphaPicker:nil];
+    [self setAlphaView:nil];
 	[ super viewDidUnload ];
 	
 	// Release any retained subviews of the main view.
@@ -177,6 +186,13 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 //------------------------------------------------------------------------------
 #pragma mark	IB actions
 //------------------------------------------------------------------------------
+- (IBAction)takeAlphaValue:(InfAlphaBarPicker *)sender {
+
+    alpha = sender.value;
+    
+    [ self updateResultColor ];
+
+}
 
 - (IBAction) takeBarValue: (InfColorBarPicker*) sender
 {
@@ -235,7 +251,7 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 	
 	[ resultColor release ];
 	resultColor = [ [ UIColor colorWithHue: hue saturation: saturation 
-								brightness: brightness alpha: 1.0f ] retain ];
+								brightness: brightness alpha: alpha ] retain ];
 	
 	[ self didChangeValueForKey: @"resultColor" ];
 	
@@ -263,8 +279,14 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 			squarePicker.hue = hue;
 		}
 		
-		squarePicker.value = CGPointMake( saturation, brightness );
+        
+        float r,g,b,a;
+        [newValue getRed:&r green:&g blue:&b alpha:&a];
+        alphaPicker.value = a;
+        alphaView.color = newValue;
+        alpha = a;
 
+		squarePicker.value = CGPointMake( saturation, brightness );
 		resultColorView.backgroundColor = resultColor;
 
 		[ self informDelegateDidChangeColor ];
@@ -280,7 +302,7 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 		sourceColor = [ newValue retain ];
 		
 		sourceColorView.backgroundColor = sourceColor;
-		
+		        
 		self.resultColor = newValue;
 	}
 }

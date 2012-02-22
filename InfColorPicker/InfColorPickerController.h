@@ -17,11 +17,15 @@
 @class InfColorBarPicker;
 @class InfColorSquarePicker;
 
+@class InfAlphaBarPicker;
+@class InfAlphaBarView;
+
 @protocol InfColorPickerControllerDelegate;
 
 //------------------------------------------------------------------------------
 
 @interface InfColorPickerController : UIViewController {
+    float alpha;
 	float hue;
 	float saturation;
 	float brightness;
@@ -45,6 +49,8 @@
 @property( retain, nonatomic ) IBOutlet InfColorSquareView* squareView;
 @property( retain, nonatomic ) IBOutlet InfColorBarPicker* barPicker;
 @property( retain, nonatomic ) IBOutlet InfColorSquarePicker* squarePicker;
+@property (retain, nonatomic) IBOutlet InfAlphaBarView *alphaView;
+@property (retain, nonatomic) IBOutlet InfAlphaBarPicker *alphaPicker;
 @property( retain, nonatomic ) IBOutlet UIView* sourceColorView;
 @property( retain, nonatomic ) IBOutlet UIView* resultColorView;
 @property( retain, nonatomic ) IBOutlet UINavigationController* navController;
