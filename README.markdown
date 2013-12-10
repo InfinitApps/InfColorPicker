@@ -1,8 +1,10 @@
-The InfiniApps Color Picker, known as InfColorPicker, is a view controller for use in iOS applications to allow the selection of a color from RGB space, but using an HSB representation of that color space to make selection of a color easier for a human.
+The InfinitApps Color Picker, known as InfColorPicker, is a view controller for use in iOS applications to allow the selection of a color from RGB space, but using an HSB representation of that color space to make selection of a color easier for a human.
 
 ![InfColorPicker Screenshot](http://f.cl.ly/items/0b0X0Z1t2A170E0c3L1R/InfColorPicker.png)
 
-InfColorPicker is distributed with an MIT license. It supports iPhone OS 3.x as well as iOS 4 and 5.
+InfColorPicker is distributed with an MIT license.
+
+It is ARC-based and supports iPhone OS 5 and later (with one small change it could be made compatible back to iOS 4 if that's necessary).
 
 Usage
 -----
