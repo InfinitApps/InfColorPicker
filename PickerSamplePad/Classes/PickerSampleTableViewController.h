@@ -14,9 +14,6 @@
 
 #import "InfColorPicker.h"
 
-@interface PickerSampleTableViewController : UITableViewController <InfColorPickerControllerDelegate> {
-	NSMutableArray* colors;
-	int pickingColorIndex;
-}
+@interface PickerSampleTableViewController : UITableViewController <InfColorPickerControllerDelegate>
 
 @end

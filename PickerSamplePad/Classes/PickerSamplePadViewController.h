@@ -19,10 +19,6 @@
 @interface PickerSamplePadViewController : UIViewController <InfColorPickerControllerDelegate,
 															 UIPopoverControllerDelegate,
 															 UITableViewDelegate>
-{
-	UIPopoverController* activePopover;
-	BOOL updateLive;
-}
 
 - (IBAction) takeUpdateLive: (id) sender;
 - (IBAction) changeColor: (id) sender;

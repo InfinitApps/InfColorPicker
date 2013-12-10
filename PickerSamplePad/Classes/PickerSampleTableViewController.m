@@ -14,7 +14,10 @@
 
 //==============================================================================
 
-@implementation PickerSampleTableViewController
+@implementation PickerSampleTableViewController {
+	NSMutableArray* colors;
+	int pickingColorIndex;
+}
 
 //------------------------------------------------------------------------------
 #pragma mark - View lifecycle

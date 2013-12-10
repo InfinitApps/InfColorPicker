@@ -16,7 +16,10 @@
 
 //==============================================================================
 
-@implementation PickerSamplePadViewController
+@implementation PickerSamplePadViewController {
+	UIPopoverController* activePopover;
+	BOOL updateLive;
+}
 
 //------------------------------------------------------------------------------
 
