@@ -5,7 +5,7 @@
 //
 //  Created by Troy Gaul on 9/7/11.
 //
-//  Copyright (c) 2011 InfinitApps LLC - http://infinitapps.com
+//  Copyright (c) 2011 InfinitApps LLC: http://infinitapps.com
 //	Some rights reserved: http://opensource.org/licenses/MIT
 //
 //==============================================================================
