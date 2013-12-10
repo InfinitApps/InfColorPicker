@@ -236,9 +236,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PickerSamplePhone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = PickerSamplePhone;
 			};
 			name = Debug;
@@ -248,9 +246,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PickerSamplePhone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = PickerSamplePhone;
 				VALIDATE_PRODUCT = YES;
 			};
