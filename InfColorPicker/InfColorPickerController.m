@@ -211,8 +211,7 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 {
 	// This is used when code internally causes the update.  We do this so that
 	// we don't cause push-back on the HSV values in case there are rounding
-	// differences or anything.  However, given protections from hue and sat
-	// changes when not necessary elsewhere it's probably not actually needed.
+	// differences or anything.
 	
 	[self willChangeValueForKey: @"resultColor"];
 	
@@ -238,7 +237,10 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 		float h = hue;
 		HSVFromUIColor(newValue, &h, &saturation, &brightness);
 		
-		if (h != hue) {
+		if ((h == 0.0 && hue == 1.0) || (h == 1.0 && hue == 0.0)) {
+			// these are equivalent, so do nothing
+		}
+		else if (h != hue) {
 			hue = h;
 			
 			barPicker.value = hue;
