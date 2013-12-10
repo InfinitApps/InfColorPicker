@@ -60,9 +60,7 @@
 	if (self.enabled) {
 		self.trackingInside = YES;
 		
-		[self sendActionsForControlEvents: UIControlEventTouchDown];
-		
-		return YES;
+		return [super beginTrackingWithTouch: touch withEvent: event];
 	}
 	else {
 		return NO;
@@ -73,25 +71,11 @@
 
 - (BOOL) continueTrackingWithTouch: (UITouch*) touch withEvent: (UIEvent*) event
 {
-	BOOL wasTrackingInside = self.trackingInside;
 	BOOL isTrackingInside = CGRectContainsPoint([self bounds], [touch locationInView: self]);
 	
 	self.trackingInside = isTrackingInside;
 	
-	if (isTrackingInside && !wasTrackingInside) {
-		[self sendActionsForControlEvents: UIControlEventTouchDragEnter];
-	}
-	else if (!isTrackingInside && wasTrackingInside) {
-		[self sendActionsForControlEvents: UIControlEventTouchDragExit];
-	}
-	else if (isTrackingInside) {
-		[self sendActionsForControlEvents: UIControlEventTouchDragInside];
-	}
-	else {
-		[self sendActionsForControlEvents: UIControlEventTouchDragOutside];
-	}
-	
-	return YES;
+	return [super continueTrackingWithTouch: touch withEvent: event];
 }
 
 //------------------------------------------------------------------------------
@@ -100,12 +84,7 @@
 {
 	self.trackingInside = NO;
 	
-	if (CGRectContainsPoint([self bounds], [touch locationInView: self]) ) {
-		[self sendActionsForControlEvents: UIControlEventTouchUpInside];
-	}
-	else {
-		[self sendActionsForControlEvents: UIControlEventTouchUpOutside];
-	}
+	[super endTrackingWithTouch: touch withEvent: event];
 }
 
 //------------------------------------------------------------------------------
@@ -114,7 +93,7 @@
 {
 	self.trackingInside = NO;
 	
-	[self sendActionsForControlEvents: UIControlEventTouchCancel];
+	[super cancelTrackingWithEvent: event];
 }
 
 //------------------------------------------------------------------------------
