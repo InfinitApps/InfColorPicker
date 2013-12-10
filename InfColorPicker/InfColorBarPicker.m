@@ -58,11 +58,9 @@ static CGImageRef createContentImage()
 
 //==============================================================================
 
-@implementation InfColorBarPicker
-
-//------------------------------------------------------------------------------
-
-@synthesize value;
+@implementation InfColorBarPicker {
+	InfColorIndicatorView* indicator;
+}
 
 //------------------------------------------------------------------------------
 #pragma mark	Drawing
@@ -76,7 +74,7 @@ static CGImageRef createContentImage()
 		[self addSubview: indicator];
 	}
 	
-	indicator.color = [UIColor colorWithHue: value
+	indicator.color = [UIColor colorWithHue: self.value
 	                             saturation: 1.0f
 	                             brightness: 1.0f
 	                                  alpha: 1.0f];
@@ -91,8 +89,8 @@ static CGImageRef createContentImage()
 
 - (void) setValue: (float) newValue
 {
-	if (newValue != value) {
-		value = newValue;
+	if (newValue != _value) {
+		_value = newValue;
 		
 		[self sendActionsForControlEvents: UIControlEventValueChanged];
 		[self setNeedsLayout];

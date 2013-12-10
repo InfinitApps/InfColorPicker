@@ -12,8 +12,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class InfColorIndicatorView;
-
 //------------------------------------------------------------------------------
 
 @interface InfColorBarView : UIView
@@ -22,9 +20,7 @@
 
 //------------------------------------------------------------------------------
 
-@interface InfColorBarPicker : UIControl {
-	InfColorIndicatorView* indicator;
-}
+@interface InfColorBarPicker : UIControl
 
 @property (nonatomic) float value;
 

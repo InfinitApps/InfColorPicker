@@ -34,13 +34,9 @@
 
 //------------------------------------------------------------------------------
 
-@synthesize hue;
-
-//------------------------------------------------------------------------------
-
 - (void) updateContent
 {
-	CGImageRef imageRef = createSaturationBrightnessSquareContentImageWithHue(hue * 360);
+	CGImageRef imageRef = createSaturationBrightnessSquareContentImageWithHue(self.hue * 360);
 	self.image = [UIImage imageWithCGImage: imageRef];
 	CGImageRelease(imageRef);
 }
@@ -51,8 +47,8 @@
 
 - (void) setHue: (float) value
 {
-	if (value != hue || self.image == nil) {
-		hue = value;
+	if (value != _hue || self.image == nil) {
+		_hue = value;
 		
 		[self updateContent];
 	}
@@ -64,12 +60,9 @@
 
 //==============================================================================
 
-@implementation InfColorSquarePicker
-
-//------------------------------------------------------------------------------
-
-@synthesize hue;
-@synthesize value;
+@implementation InfColorSquarePicker {
+	InfColorIndicatorView* indicator;
+}
 
 //------------------------------------------------------------------------------
 #pragma mark	Appearance
@@ -80,9 +73,9 @@
 	if (indicator == nil)
 		return;
 	
-	indicator.color = [UIColor colorWithHue: hue
-	                             saturation: value.x
-	                             brightness: value.y
+	indicator.color = [UIColor colorWithHue: self.hue
+	                             saturation: self.value.x
+	                             brightness: self.value.y
 	                                  alpha: 1.0f];
 }
 
@@ -91,7 +84,7 @@
 - (NSString*) spokenValue
 {
 	return [NSString stringWithFormat: @"%d%% saturation, %d%% brightness", 
-						(int) (value.x * 100), (int) (value.y * 100)]; 
+						(int) (self.value.x * 100), (int) (self.value.y * 100)];
 }
 
 //------------------------------------------------------------------------------
@@ -119,8 +112,8 @@
 
 - (void) setHue: (float) newValue
 {
-	if (newValue != hue) {
-		hue = newValue;
+	if (newValue != _hue) {
+		_hue = newValue;
 		
 		[self setIndicatorColor];
 	}
@@ -130,8 +123,8 @@
 
 - (void) setValue: (CGPoint) newValue
 {
-	if (!CGPointEqualToPoint(newValue, value)) {
-		value = newValue;
+	if (!CGPointEqualToPoint(newValue, _value)) {
+		_value = newValue;
 		
 		[self sendActionsForControlEvents: UIControlEventValueChanged];
 		[self setNeedsLayout];

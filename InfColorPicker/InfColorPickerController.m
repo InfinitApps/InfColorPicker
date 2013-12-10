@@ -49,28 +49,25 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 
 @interface InfColorPickerController ()
 
-- (void) updateResultColor;
+// IB outlets:
 
-// Outlets and actions:
-
-- (IBAction) takeBarValue: (id) sender;
-- (IBAction) takeSquareValue: (id) sender;
-- (IBAction) takeBackgroundColor: (UIView*) sender;
-- (IBAction) done: (id) sender;
+@property (nonatomic) IBOutlet InfColorBarView* barView;
+@property (nonatomic) IBOutlet InfColorSquareView* squareView;
+@property (nonatomic) IBOutlet InfColorBarPicker* barPicker;
+@property (nonatomic) IBOutlet InfColorSquarePicker* squarePicker;
+@property (nonatomic) IBOutlet UIView* sourceColorView;
+@property (nonatomic) IBOutlet UIView* resultColorView;
+@property (nonatomic) IBOutlet UINavigationController* navController;
 
 @end
 
 //==============================================================================
 
-@implementation InfColorPickerController
-
-//------------------------------------------------------------------------------
-
-@synthesize delegate, resultColor, sourceColor;
-@synthesize barView, squareView;
-@synthesize barPicker, squarePicker;
-@synthesize sourceColorView,  resultColorView;
-@synthesize navController;
+@implementation InfColorPickerController {
+	float _hue;
+	float _saturation;
+	float _brightness;
+}
 
 //------------------------------------------------------------------------------
 #pragma mark	Class methods
@@ -112,16 +109,16 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 	
 	self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 	
-	barPicker.value = hue;
-	squareView.hue = hue;
-	squarePicker.hue = hue;
-	squarePicker.value = CGPointMake(saturation, brightness);
+	_barPicker.value = _hue;
+	_squareView.hue = _hue;
+	_squarePicker.hue = _hue;
+	_squarePicker.value = CGPointMake(_saturation, _brightness);
 	
-	if (sourceColor)
-		sourceColorView.backgroundColor = sourceColor;
+	if (_sourceColor)
+		_sourceColorView.backgroundColor = _sourceColor;
 	
-	if (resultColor)
-		resultColorView.backgroundColor = resultColor;
+	if (_resultColor)
+		_resultColorView.backgroundColor = _resultColor;
 }
 
 //------------------------------------------------------------------------------
@@ -169,10 +166,10 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 
 - (IBAction) takeBarValue: (InfColorBarPicker*) sender
 {
-	hue = sender.value;
+	_hue = sender.value;
 	
-	squareView.hue = hue;
-	squarePicker.hue = hue;
+	_squareView.hue = _hue;
+	_squarePicker.hue = _hue;
 	
 	[self updateResultColor];
 }
@@ -181,8 +178,8 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 
 - (IBAction) takeSquareValue: (InfColorSquarePicker*) sender
 {
-	saturation = sender.value.x;
-	brightness = sender.value.y;
+	_saturation = sender.value.x;
+	_brightness = sender.value.y;
 	
 	[self updateResultColor];
 }
@@ -221,14 +218,14 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 	
 	[self willChangeValueForKey: @"resultColor"];
 	
-	resultColor = [UIColor colorWithHue: hue
-	                         saturation: saturation
-	                         brightness: brightness
-	                              alpha: 1.0f];
+	_resultColor = [UIColor colorWithHue: _hue
+							  saturation: _saturation
+							  brightness: _brightness
+								   alpha: 1.0f];
 	
 	[self didChangeValueForKey: @"resultColor"];
 	
-	resultColorView.backgroundColor = resultColor;
+	_resultColorView.backgroundColor = _resultColor;
 	
 	[self informDelegateDidChangeColor];
 }
@@ -237,26 +234,26 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 
 - (void) setResultColor: (UIColor*) newValue
 {
-	if (![resultColor isEqual: newValue]) {
-		resultColor = newValue;
+	if (![_resultColor isEqual: newValue]) {
+		_resultColor = newValue;
 		
-		float h = hue;
-		HSVFromUIColor(newValue, &h, &saturation, &brightness);
+		float h = _hue;
+		HSVFromUIColor(newValue, &h, &_saturation, &_brightness);
 		
-		if ((h == 0.0 && hue == 1.0) || (h == 1.0 && hue == 0.0)) {
+		if ((h == 0.0 && _hue == 1.0) || (h == 1.0 && _hue == 0.0)) {
 			// these are equivalent, so do nothing
 		}
-		else if (h != hue) {
-			hue = h;
+		else if (h != _hue) {
+			_hue = h;
 			
-			barPicker.value = hue;
-			squareView.hue = hue;
-			squarePicker.hue = hue;
+			_barPicker.value = _hue;
+			_squareView.hue = _hue;
+			_squarePicker.hue = _hue;
 		}
 		
-		squarePicker.value = CGPointMake(saturation, brightness);
+		_squarePicker.value = CGPointMake(_saturation, _brightness);
 		
-		resultColorView.backgroundColor = resultColor;
+		_resultColorView.backgroundColor = _resultColor;
 		
 		[self informDelegateDidChangeColor];
 	}
@@ -266,10 +263,10 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 
 - (void) setSourceColor: (UIColor*) newValue
 {
-	if (![sourceColor isEqual: newValue]) {
-		sourceColor = newValue;
+	if (![_sourceColor isEqual: newValue]) {
+		_sourceColor = newValue;
 		
-		sourceColorView.backgroundColor = sourceColor;
+		_sourceColorView.backgroundColor = _sourceColor;
 		
 		self.resultColor = newValue;
 	}

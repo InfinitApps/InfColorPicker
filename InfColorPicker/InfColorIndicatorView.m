@@ -24,10 +24,6 @@
 
 //------------------------------------------------------------------------------
 
-@synthesize color;
-
-//------------------------------------------------------------------------------
-
 - (id) initWithFrame: (CGRect) frame
 {
 	self = [super initWithFrame: frame];
@@ -44,8 +40,8 @@
 
 - (void) setColor: (UIColor*) newColor
 {
-	if (![color isEqual: newColor]) {
-		color = newColor;
+	if (![_color isEqual: newColor]) {
+		_color = newColor;
 		
 		[self setNeedsDisplay];
 	}

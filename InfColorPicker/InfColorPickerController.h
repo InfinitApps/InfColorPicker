@@ -12,20 +12,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class InfColorBarView;
-@class InfColorSquareView;
-@class InfColorBarPicker;
-@class InfColorSquarePicker;
-
 @protocol InfColorPickerControllerDelegate;
 
 //------------------------------------------------------------------------------
 
-@interface InfColorPickerController : UIViewController {
-	float hue;
-	float saturation;
-	float brightness;
-}
+@interface InfColorPickerController : UIViewController
 
 // Public API:
 
@@ -38,16 +29,6 @@
 @property (nonatomic) UIColor* resultColor;
 
 @property (weak, nonatomic) id <InfColorPickerControllerDelegate> delegate;
-
-// IB outlets:
-
-@property (nonatomic) IBOutlet InfColorBarView* barView;
-@property (nonatomic) IBOutlet InfColorSquareView* squareView;
-@property (nonatomic) IBOutlet InfColorBarPicker* barPicker;
-@property (nonatomic) IBOutlet InfColorSquarePicker* squarePicker;
-@property (nonatomic) IBOutlet UIView* sourceColorView;
-@property (nonatomic) IBOutlet UIView* resultColorView;
-@property (nonatomic) IBOutlet UINavigationController* navController;
 
 @end
 

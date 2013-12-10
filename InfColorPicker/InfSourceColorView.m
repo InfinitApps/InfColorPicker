@@ -23,10 +23,6 @@
 @implementation InfSourceColorView
 
 //------------------------------------------------------------------------------
-
-@synthesize trackingInside;
-
-//------------------------------------------------------------------------------
 #pragma mark	UIView overrides
 //------------------------------------------------------------------------------
 
@@ -52,8 +48,8 @@
 
 - (void) setTrackingInside: (BOOL) newValue
 {
-	if (newValue != trackingInside) {
-		trackingInside = newValue;
+	if (newValue != _trackingInside) {
+		_trackingInside = newValue;
 		[self setNeedsDisplay];
 	}
 }

@@ -12,8 +12,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class InfColorIndicatorView;
-
 //------------------------------------------------------------------------------
 
 @interface InfColorSquareView : UIImageView
@@ -24,9 +22,7 @@
 
 //------------------------------------------------------------------------------
 
-@interface InfColorSquarePicker : UIControl {
-	InfColorIndicatorView* indicator;
-}
+@interface InfColorSquarePicker : UIControl
 
 @property (nonatomic) float hue;
 @property (nonatomic) CGPoint value;
