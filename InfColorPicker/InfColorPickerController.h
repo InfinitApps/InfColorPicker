@@ -34,20 +34,20 @@
 
 - (void) presentModallyOverViewController: (UIViewController*) controller;
 
-@property (strong, nonatomic) UIColor* sourceColor;
-@property (strong, nonatomic) UIColor* resultColor;
+@property (nonatomic) UIColor* sourceColor;
+@property (nonatomic) UIColor* resultColor;
 
 @property (weak, nonatomic) id <InfColorPickerControllerDelegate> delegate;
 
 // IB outlets:
 
-@property (strong, nonatomic) IBOutlet InfColorBarView* barView;
-@property (strong, nonatomic) IBOutlet InfColorSquareView* squareView;
-@property (strong, nonatomic) IBOutlet InfColorBarPicker* barPicker;
-@property (strong, nonatomic) IBOutlet InfColorSquarePicker* squarePicker;
-@property (strong, nonatomic) IBOutlet UIView* sourceColorView;
-@property (strong, nonatomic) IBOutlet UIView* resultColorView;
-@property (strong, nonatomic) IBOutlet UINavigationController* navController;
+@property (nonatomic) IBOutlet InfColorBarView* barView;
+@property (nonatomic) IBOutlet InfColorSquareView* squareView;
+@property (nonatomic) IBOutlet InfColorBarPicker* barPicker;
+@property (nonatomic) IBOutlet InfColorSquarePicker* squarePicker;
+@property (nonatomic) IBOutlet UIView* sourceColorView;
+@property (nonatomic) IBOutlet UIView* resultColorView;
+@property (nonatomic) IBOutlet UINavigationController* navController;
 
 @end
 
