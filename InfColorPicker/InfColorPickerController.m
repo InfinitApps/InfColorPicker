@@ -18,6 +18,12 @@
 
 //------------------------------------------------------------------------------
 
+#if !__has_feature(objc_arc)
+#error This file must be compiled with ARC enabled (-fobjc-arc).
+#endif
+
+//------------------------------------------------------------------------------
+
 static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 {
 	CGColorRef colorRef = [color CGColor];

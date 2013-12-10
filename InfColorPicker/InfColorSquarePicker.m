@@ -17,6 +17,12 @@
 
 //------------------------------------------------------------------------------
 
+#if !__has_feature(objc_arc)
+#error This file must be compiled with ARC enabled (-fobjc-arc).
+#endif
+
+//------------------------------------------------------------------------------
+
 #define kContentInsetX 20
 #define kContentInsetY 20
 

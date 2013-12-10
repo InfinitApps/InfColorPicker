@@ -12,6 +12,12 @@
 
 #import "InfSourceColorView.h"
 
+//------------------------------------------------------------------------------
+
+#if !__has_feature(objc_arc)
+#error This file must be compiled with ARC enabled (-fobjc-arc).
+#endif
+
 //==============================================================================
 
 @implementation InfSourceColorView
