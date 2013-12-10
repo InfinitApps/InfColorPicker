@@ -83,11 +83,6 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 }
 
 //------------------------------------------------------------------------------
-#pragma mark	Memory management
-//------------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------------
 #pragma mark	Creation
 //------------------------------------------------------------------------------
 
@@ -155,7 +150,9 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 	
 	nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemDone target: self action: @selector(done:)];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemDone 
+																						   target: self 
+																						   action: @selector(done:)];
 	
 	[controller presentViewController: nav animated: YES completion: nil];
 }
@@ -204,7 +201,7 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 
 - (void) informDelegateDidChangeColor
 {
-	if (self.delegate && [(id) self.delegate respondsToSelector : @selector(colorPickerControllerDidChangeColor:)])
+	if (self.delegate && [(id) self.delegate respondsToSelector: @selector(colorPickerControllerDidChangeColor:)])
 		[self.delegate colorPickerControllerDidChangeColor: self];
 }
 
