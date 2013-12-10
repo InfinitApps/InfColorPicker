@@ -178,7 +178,6 @@ static CGContextRef createBGRxImageContext(int w, int h, void* data)
 CGImageRef createSaturationBrightnessSquareContentImageWithHue(float hue)
 {
 	void* data = malloc(256 * 256 * 4);
-	
 	if (data == nil)
 		return nil;
 	
@@ -216,7 +215,7 @@ CGImageRef createSaturationBrightnessSquareContentImageWithHue(float hue)
 			// implemented in software on ARM, so a divide by 256
 			// (done as a bit shift) will be *nearly* the same value,
 			// and is faster. The more-accurate versions would look like:
-			//	ptr[ 0 ] = blend(v, b_hs);
+			//	ptr[0] = blend(v, b_hs);
 			
 			ptr += rowBytes;
 		}
@@ -250,14 +249,12 @@ CGImageRef createHSVBarContentImage(InfComponentIndex barComponentIndex, float h
 	// Draw into context here:
 	
 	UInt8* ptr = CGBitmapContextGetData(context);
-	
 	if (ptr == nil) {
 		CGContextRelease(context);
 		return nil;
 	}
 	
 	float r, g, b;
-	
 	for (int x = 0; x < 256; ++x) {
 		hsv[barComponentIndex] = (float) x / 255.0f;
 		

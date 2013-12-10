@@ -35,7 +35,6 @@
 - (void) updateContent
 {
 	CGImageRef imageRef = createSaturationBrightnessSquareContentImageWithHue(hue * 360);
-	
 	self.image = [UIImage imageWithCGImage: imageRef];
 	CGImageRelease(imageRef);
 }
