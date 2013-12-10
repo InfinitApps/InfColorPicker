@@ -28,7 +28,6 @@
 static CGImageRef createContentImage()
 {
 	float hsv[] = { 0.0f, 1.0f, 1.0f };
-	
 	return createHSVBarContentImage(InfComponentIndexHue, hsv);
 }
 
@@ -76,8 +75,8 @@ static CGImageRef createContentImage()
 	                             brightness: 1.0f
 	                                  alpha: 1.0f];
 	
-	CGFloat indicatorLoc = kContentInsetX + (self.value * (self.bounds.size.width - 2 * kContentInsetX) );
-	indicator.center = CGPointMake(indicatorLoc, CGRectGetMidY(self.bounds) );
+	CGFloat indicatorLoc = kContentInsetX + (self.value * (self.bounds.size.width - 2 * kContentInsetX));
+	indicator.center = CGPointMake(indicatorLoc, CGRectGetMidY(self.bounds));
 }
 
 //------------------------------------------------------------------------------
@@ -101,7 +100,7 @@ static CGImageRef createContentImage()
 - (void) trackIndicatorWithTouch: (UITouch*) touch
 {
 	float percent = ([touch locationInView: self].x - kContentInsetX)
-	/ (self.bounds.size.width - 2 * kContentInsetX);
+				  / (self.bounds.size.width - 2 * kContentInsetX);
 	
 	self.value = pin(0.0f, percent, 1.0f);
 }

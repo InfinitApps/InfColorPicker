@@ -36,7 +36,7 @@
 		                             CGRectInset(bounds, 1, 1), 2);
 		
 		[[UIColor blackColor] set];
-		UIRectFrame(CGRectInset(bounds, 2, 2) );
+		UIRectFrame(CGRectInset(bounds, 2, 2));
 	}
 }
 
