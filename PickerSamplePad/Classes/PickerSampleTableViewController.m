@@ -17,17 +17,6 @@
 @implementation PickerSampleTableViewController
 
 //------------------------------------------------------------------------------
-
-- (void) dealloc
-{
-	[ colors[ 0 ] release ];
-	[ colors[ 1 ] release ];
-	[ colors[ 2 ] release ];
-	
-	[ super dealloc ];
-}
-
-//------------------------------------------------------------------------------
 #pragma mark - View lifecycle
 //------------------------------------------------------------------------------
 
@@ -35,10 +24,12 @@
 {
 	[ super viewDidLoad ];
 
-	if( colors[ 0 ] == nil ) {
-		colors[ 0 ] = [ [ UIColor blackColor ] retain ];
-		colors[ 1 ] = [ [ UIColor redColor ] retain ];
-		colors[ 2 ] = [ [ UIColor greenColor ] retain ];
+	if( colors == nil ) {
+		colors = [ NSMutableArray array ];
+		
+		[ colors addObject: [ UIColor blackColor ] ];
+		[ colors addObject: [ UIColor redColor ] ];
+		[ colors addObject: [ UIColor greenColor ] ];
 	}
 	
 	self.contentSizeForViewInPopover = [ InfColorPickerController idealSizeForViewInPopover ];
@@ -55,16 +46,9 @@
 #pragma mark - Table view data source
 //------------------------------------------------------------------------------
 
-- (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
-{
-	return 1;
-}
-
-//------------------------------------------------------------------------------
-
 - (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
 {
-	return 3;
+	return colors.count;
 }
 
 //------------------------------------------------------------------------------
@@ -75,8 +59,8 @@
 	
 	UITableViewCell* cell = [ tableView dequeueReusableCellWithIdentifier: CellIdentifier ];
 	if( cell == nil ) {
-		cell = [ [ [ UITableViewCell alloc ] initWithStyle: UITableViewCellStyleDefault 
-										   reuseIdentifier: CellIdentifier ] autorelease ];
+		cell = [ [ UITableViewCell alloc ] initWithStyle: UITableViewCellStyleDefault
+										 reuseIdentifier: CellIdentifier ];
 	}
 	
 	// Configure the cell:
@@ -118,8 +102,7 @@
 	NSIndexPath* indexPath = [ NSIndexPath indexPathWithIndexes: indexes length: 2 ];
 	UITableViewCell* cell = [ self.tableView cellForRowAtIndexPath: indexPath ];
 	
-	[ colors[ pickingColorIndex ] release ];
-	colors[ pickingColorIndex ] = [ controller.resultColor retain ];
+	colors[ pickingColorIndex ] = controller.resultColor;
 	
 	cell.textLabel.textColor = controller.resultColor;
 }

@@ -16,7 +16,7 @@
 
 @interface PickerSampleTableViewController : UITableViewController< InfColorPickerControllerDelegate >
 {
-	UIColor* colors[ 3 ];
+	NSMutableArray* colors;
 	int pickingColorIndex;
 }
 

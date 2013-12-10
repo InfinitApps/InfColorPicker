@@ -62,12 +62,6 @@ static CGImageRef createContentImage()
 #pragma mark	Lifetime
 //------------------------------------------------------------------------------
 
-- (void) dealloc
-{
-	[ indicator release ];
-	
-	[ super dealloc ];
-}
 
 //------------------------------------------------------------------------------
 #pragma mark	Drawing

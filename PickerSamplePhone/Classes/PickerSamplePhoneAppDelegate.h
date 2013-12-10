@@ -18,8 +18,8 @@
 
 @interface PickerSamplePhoneAppDelegate : NSObject< UIApplicationDelegate >
 
-@property( nonatomic, retain ) IBOutlet UIWindow* window;
-@property( nonatomic, retain ) IBOutlet PickerSamplePhoneViewController* viewController;
+@property( nonatomic, strong ) IBOutlet UIWindow* window;
+@property( nonatomic, strong ) IBOutlet PickerSamplePhoneViewController* viewController;
 
 @end
 

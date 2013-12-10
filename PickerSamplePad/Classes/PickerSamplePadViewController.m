@@ -20,15 +20,6 @@
 
 //------------------------------------------------------------------------------
 
-- (void) dealloc
-{
-	[ activePopover release ];
-	
-	[ super dealloc ];
-}
-
-//------------------------------------------------------------------------------
-
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
 {
     return YES;
@@ -53,7 +44,6 @@
 	}
 	
 	if( popoverController == activePopover ) {
-		[ activePopover release ];
 		activePopover = nil;
 	}
 }
@@ -64,7 +54,7 @@
 {
 	popover.delegate = self;
 	
-	activePopover = [ popover retain ];
+	activePopover = popover;
 	
 	if( [ sender isKindOfClass: [ UIBarButtonItem class ] ] ) {
 		[ activePopover presentPopoverFromBarButtonItem: sender
@@ -135,14 +125,14 @@
 	if( [ self dismissActivePopover ] )
 		return;
 	
-	PickerSampleTableViewController* vc = [ [ [ PickerSampleTableViewController alloc ] init ] autorelease ];
-	UINavigationController* nav = [ [ [ UINavigationController alloc ] initWithRootViewController: vc ] autorelease ];
+	PickerSampleTableViewController* vc = [ [ PickerSampleTableViewController alloc ] init ];
+	UINavigationController* nav = [ [ UINavigationController alloc ] initWithRootViewController: vc ];
 	
 	nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	
-	vc.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone target: self action: @selector( finishColorTable ) ] autorelease ];
+	vc.navigationItem.rightBarButtonItem = [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone target: self action: @selector( finishColorTable ) ];
 	
-	UIPopoverController* popover = [ [ [ UIPopoverController alloc ] initWithContentViewController: nav ] autorelease ];
+	UIPopoverController* popover = [ [ UIPopoverController alloc ] initWithContentViewController: nav ];
 	
 	[ self showPopover: popover from: sender ];
 }
@@ -159,7 +149,7 @@
 	picker.sourceColor = self.view.backgroundColor;
 	picker.delegate = self;
 	
-	UIPopoverController* popover = [ [ [ UIPopoverController alloc ] initWithContentViewController: picker ] autorelease ];
+	UIPopoverController* popover = [ [ UIPopoverController alloc ] initWithContentViewController: picker ];
 	
 	[ self showPopover: popover from: sender ];
 }
