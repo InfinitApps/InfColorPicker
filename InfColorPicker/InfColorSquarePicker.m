@@ -82,6 +82,14 @@
 
 //------------------------------------------------------------------------------
 
+- (NSString*) spokenValue
+{
+	return [NSString stringWithFormat: @"%d%% saturation, %d%% brightness", 
+						(int) (value.x * 100), (int) (value.y * 100)]; 
+}
+
+//------------------------------------------------------------------------------
+
 - (void) layoutSubviews
 {
 	if (indicator == nil) {

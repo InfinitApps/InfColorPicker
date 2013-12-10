@@ -126,6 +126,50 @@ static CGImageRef createContentImage()
 }
 
 //------------------------------------------------------------------------------
+#pragma mark	Accessibility
+//------------------------------------------------------------------------------
+
+- (UIAccessibilityTraits) accessibilityTraits
+{
+	UIAccessibilityTraits t = super.accessibilityTraits;
+	
+	t |= UIAccessibilityTraitAdjustable;
+	
+	return t;
+}
+
+//------------------------------------------------------------------------------
+
+- (void) accessibilityIncrement
+{
+	float newValue = self.value + 0.05;
+	
+	if (newValue > 1.0)
+		newValue -= 1.0;
+		
+	self.value = newValue;
+}
+
+//------------------------------------------------------------------------------
+
+- (void) accessibilityDecrement
+{
+	float newValue = self.value - 0.05;
+	
+	if (newValue < 0)
+		newValue += 1.0;
+	
+	self.value = newValue;
+}
+
+//------------------------------------------------------------------------------
+
+- (NSString*) accessibilityValue
+{
+	return [NSString stringWithFormat: @"%d degrees hue", (int) (self.value * 360.0)]; 
+}
+
+//------------------------------------------------------------------------------
 
 @end
 
