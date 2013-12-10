@@ -22,12 +22,12 @@
 
 - (IBAction) changeBackgroundColor
 {
-	InfColorPickerController* picker = [ InfColorPickerController colorPickerViewController ];
+	InfColorPickerController* picker = [InfColorPickerController colorPickerViewController];
 	
 	picker.sourceColor = self.view.backgroundColor;
 	picker.delegate = self;
 	
-	[ picker presentModallyOverViewController: self ];
+	[picker presentModallyOverViewController: self];
 }
 
 //------------------------------------------------------------------------------
@@ -35,8 +35,8 @@
 - (void) colorPickerControllerDidFinish: (InfColorPickerController*) picker
 {
 	self.view.backgroundColor = picker.resultColor;
-
-	[ self dismissModalViewControllerAnimated: YES ];
+	
+	[self dismissModalViewControllerAnimated: YES];
 }
 
 //------------------------------------------------------------------------------

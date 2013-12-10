@@ -4,7 +4,7 @@
 //  PickerSamplePad
 //
 //  Created by Troy Gaul on 8/17/10.
-//	
+//
 //  Copyright (c) 2011 InfinitApps LLC - http://infinitapps.com
 //	Some rights reserved: http://opensource.org/licenses/MIT
 //
@@ -14,10 +14,10 @@
 
 //------------------------------------------------------------------------------
 
-int main( int argc, char* argv[] )
+int main(int argc, char* argv[])
 {
 	@autoreleasepool {
-		int retVal = UIApplicationMain( argc, argv, nil, nil );
+		int retVal = UIApplicationMain(argc, argv, nil, nil);
 		return retVal;
 	}
 }

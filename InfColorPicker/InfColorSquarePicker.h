@@ -18,7 +18,7 @@
 
 @interface InfColorSquareView : UIImageView
 
-@property( nonatomic ) float hue;
+@property (nonatomic) float hue;
 
 @end
 
@@ -28,8 +28,8 @@
 	InfColorIndicatorView* indicator;
 }
 
-@property( nonatomic ) float hue;
-@property( nonatomic ) CGPoint value;
+@property (nonatomic) float hue;
+@property (nonatomic) CGPoint value;
 
 @end
 

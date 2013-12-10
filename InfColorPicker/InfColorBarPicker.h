@@ -26,7 +26,7 @@
 	InfColorIndicatorView* indicator;
 }
 
-@property( nonatomic ) float value;
+@property (nonatomic) float value;
 
 @end
 

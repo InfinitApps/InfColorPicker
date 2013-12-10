@@ -22,7 +22,7 @@
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
 {
-    return YES;
+	return YES;
 }
 
 //------------------------------------------------------------------------------
@@ -38,12 +38,12 @@
 
 - (void) popoverControllerDidDismissPopover: (UIPopoverController*) popoverController
 {
-	if( [ popoverController.contentViewController isKindOfClass: [ InfColorPickerController class ] ] ) {
+	if ([popoverController.contentViewController isKindOfClass: [InfColorPickerController class]]) {
 		InfColorPickerController* picker = (InfColorPickerController*) popoverController.contentViewController;
-		[ self applyPickedColor: picker ];
+		[self applyPickedColor: picker];
 	}
 	
-	if( popoverController == activePopover ) {
+	if (popoverController == activePopover) {
 		activePopover = nil;
 	}
 }
@@ -56,18 +56,17 @@
 	
 	activePopover = popover;
 	
-	if( [ sender isKindOfClass: [ UIBarButtonItem class ] ] ) {
-		[ activePopover presentPopoverFromBarButtonItem: sender
-							   permittedArrowDirections: UIPopoverArrowDirectionAny
-											   animated: YES ];
-	}
-	else {
+	if ([sender isKindOfClass: [UIBarButtonItem class]]) {
+		[activePopover presentPopoverFromBarButtonItem: sender
+		                      permittedArrowDirections: UIPopoverArrowDirectionAny
+		                                      animated: YES];
+	} else {
 		UIView* senderView = sender;
 		
-		[ activePopover presentPopoverFromRect: [ senderView bounds ] 
-										inView: senderView 
-					  permittedArrowDirections: UIPopoverArrowDirectionAny 
-									  animated: YES ];
+		[activePopover presentPopoverFromRect: [senderView bounds]
+		                               inView: senderView
+		             permittedArrowDirections: UIPopoverArrowDirectionAny
+		                             animated: YES];
 	}
 }
 
@@ -75,9 +74,9 @@
 
 - (BOOL) dismissActivePopover
 {
-	if( activePopover ) {
-		[ activePopover dismissPopoverAnimated: YES ];
-		[ self popoverControllerDidDismissPopover: activePopover ];
+	if (activePopover) {
+		[activePopover dismissPopoverAnimated: YES];
+		[self popoverControllerDidDismissPopover: activePopover];
 		
 		return YES;
 	}
@@ -91,17 +90,17 @@
 
 - (void) colorPickerControllerDidChangeColor: (InfColorPickerController*) picker
 {
-	if( updateLive )
-		[ self applyPickedColor: picker ];
+	if (updateLive)
+		[self applyPickedColor: picker];
 }
 
 //------------------------------------------------------------------------------
 
 - (void) colorPickerControllerDidFinish: (InfColorPickerController*) picker
 {
-	[ self applyPickedColor: picker ];
-
-	[ activePopover dismissPopoverAnimated: YES ];
+	[self applyPickedColor: picker];
+	
+	[activePopover dismissPopoverAnimated: YES];
 }
 
 //------------------------------------------------------------------------------
@@ -110,48 +109,49 @@
 
 - (IBAction) takeUpdateLive: (UISwitch*) sender
 {
-	updateLive = [ sender isOn ];
+	updateLive = [sender isOn];
 }
 
 //------------------------------------------------------------------------------
 
 - (IBAction) finishColorTable
 {
-	[ self dismissActivePopover ];
+	[self dismissActivePopover];
 }
 
 - (IBAction) showColorTable: (id) sender
 {
-	if( [ self dismissActivePopover ] )
+	if ([self dismissActivePopover])
 		return;
 	
-	PickerSampleTableViewController* vc = [ [ PickerSampleTableViewController alloc ] init ];
-	UINavigationController* nav = [ [ UINavigationController alloc ] initWithRootViewController: vc ];
+	PickerSampleTableViewController* vc = [[PickerSampleTableViewController alloc] init];
+	UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController: vc];
 	
 	nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	
-	vc.navigationItem.rightBarButtonItem = [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone target: self action: @selector( finishColorTable ) ];
+	vc.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+																						 target: self
+																						 action: @selector(finishColorTable)];
 	
-	UIPopoverController* popover = [ [ UIPopoverController alloc ] initWithContentViewController: nav ];
+	UIPopoverController* popover = [[UIPopoverController alloc] initWithContentViewController: nav];
 	
-	[ self showPopover: popover from: sender ];
+	[self showPopover: popover from: sender];
 }
 
 //------------------------------------------------------------------------------
 
 - (IBAction) changeColor: (id) sender
 {
-	if( [ self dismissActivePopover ] )
-		return;
+	if ([self dismissActivePopover]) return;
 	
-	InfColorPickerController* picker = [ InfColorPickerController colorPickerViewController ];
+	InfColorPickerController* picker = [InfColorPickerController colorPickerViewController];
 	
 	picker.sourceColor = self.view.backgroundColor;
 	picker.delegate = self;
 	
-	UIPopoverController* popover = [ [ UIPopoverController alloc ] initWithContentViewController: picker ];
+	UIPopoverController* popover = [[UIPopoverController alloc] initWithContentViewController: picker];
 	
-	[ self showPopover: popover from: sender ];
+	[self showPopover: popover from: sender];
 }
 
 //------------------------------------------------------------------------------

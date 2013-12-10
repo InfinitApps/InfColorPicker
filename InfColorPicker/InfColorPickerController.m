@@ -18,29 +18,30 @@
 
 //------------------------------------------------------------------------------
 
-static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
+static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 {
-	CGColorRef colorRef = [ color CGColor ];
+	CGColorRef colorRef = [color CGColor];
 	
-	const CGFloat* components = CGColorGetComponents( colorRef );
-	size_t numComponents = CGColorGetNumberOfComponents( colorRef );
+	const CGFloat* components = CGColorGetComponents(colorRef);
+	size_t numComponents = CGColorGetNumberOfComponents(colorRef);
 	
 	CGFloat r, g, b;
-	if( numComponents < 3 ) {
-		r = g = b = components[ 0 ];
+	
+	if (numComponents < 3) {
+		r = g = b = components[0];
 	}
 	else {
-		r = components[ 0 ];
-		g = components[ 1 ];
-		b = components[ 2 ];
+		r = components[0];
+		g = components[1];
+		b = components[2];
 	}
 	
-	RGBToHSV( r, g, b, h, s, v, YES );
+	RGBToHSV(r, g, b, h, s, v, YES);
 }
 
 //==============================================================================
 
-@interface InfColorPickerController()
+@interface InfColorPickerController ()
 
 - (void) updateResultColor;
 
@@ -71,14 +72,14 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 + (InfColorPickerController*) colorPickerViewController
 {
-	return [ [ self alloc ] initWithNibName: @"InfColorPickerView" bundle: nil ];
+	return [[self alloc] initWithNibName: @"InfColorPickerView" bundle: nil];
 }
 
 //------------------------------------------------------------------------------
 
 + (CGSize) idealSizeForViewInPopover
 {
-	return CGSizeMake( 256 + ( 1 + 20 ) * 2, 420 );
+	return CGSizeMake(256 + (1 + 20) * 2, 420);
 }
 
 //------------------------------------------------------------------------------
@@ -92,11 +93,11 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 - (id) initWithNibName: (NSString*) nibNameOrNil bundle: (NSBundle*) nibBundleOrNil
 {
-	self = [ super initWithNibName: nibNameOrNil bundle: nibBundleOrNil ];
+	self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
 	
-	if( self ) {
-		self.navigationItem.title = NSLocalizedString( @"Set Color", 
-									@"InfColorPicker default nav item title" );
+	if (self) {
+		self.navigationItem.title = NSLocalizedString(@"Set Color",
+		                                              @"InfColorPicker default nav item title");
 	}
 	
 	return self;
@@ -106,19 +107,19 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 - (void) viewDidLoad
 {
-	[ super viewDidLoad ];
-
+	[super viewDidLoad];
+	
 	self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-
+	
 	barPicker.value = hue;
 	squareView.hue = hue;
 	squarePicker.hue = hue;
-	squarePicker.value = CGPointMake( saturation, brightness );
-
-	if( sourceColor )
+	squarePicker.value = CGPointMake(saturation, brightness);
+	
+	if (sourceColor)
 		sourceColorView.backgroundColor = sourceColor;
 	
-	if( resultColor )
+	if (resultColor)
 		resultColorView.backgroundColor = resultColor;
 }
 
@@ -126,7 +127,7 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 - (void) viewDidUnload
 {
-	[ super viewDidUnload ];
+	[super viewDidUnload];
 	
 	// Release any retained subviews of the main view.
 	
@@ -150,13 +151,13 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 - (void) presentModallyOverViewController: (UIViewController*) controller
 {
-	UINavigationController* nav = [ [ UINavigationController alloc ] initWithRootViewController: self ];
+	UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController: self];
 	
 	nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	
-	self.navigationItem.rightBarButtonItem = [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone target: self action: @selector( done: ) ];
-				
-	[ controller presentViewController: nav animated: YES completion:nil];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemDone target: self action: @selector(done:)];
+	
+	[controller presentViewController: nav animated: YES completion: nil];
 }
 
 //------------------------------------------------------------------------------
@@ -170,7 +171,7 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 	squareView.hue = hue;
 	squarePicker.hue = hue;
 	
-	[ self updateResultColor ];
+	[self updateResultColor];
 }
 
 //------------------------------------------------------------------------------
@@ -179,8 +180,8 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 {
 	saturation = sender.value.x;
 	brightness = sender.value.y;
-
-	[ self updateResultColor ];
+	
+	[self updateResultColor];
 }
 
 //------------------------------------------------------------------------------
@@ -194,7 +195,7 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 - (IBAction) done: (id) sender
 {
-	[ self.delegate colorPickerControllerDidFinish: self ];	
+	[self.delegate colorPickerControllerDidFinish: self];
 }
 
 //------------------------------------------------------------------------------
@@ -203,8 +204,8 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 - (void) informDelegateDidChangeColor
 {
-	if( self.delegate && [ (id) self.delegate respondsToSelector: @selector( colorPickerControllerDidChangeColor: ) ] )
-		[ self.delegate colorPickerControllerDidChangeColor: self ];
+	if (self.delegate && [(id) self.delegate respondsToSelector : @selector(colorPickerControllerDidChangeColor:)])
+		[self.delegate colorPickerControllerDidChangeColor: self];
 }
 
 //------------------------------------------------------------------------------
@@ -216,29 +217,31 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 	// differences or anything.  However, given protections from hue and sat
 	// changes when not necessary elsewhere it's probably not actually needed.
 	
-	[ self willChangeValueForKey: @"resultColor" ];
+	[self willChangeValueForKey: @"resultColor"];
 	
-	resultColor = [ UIColor colorWithHue: hue saturation: saturation 
-								brightness: brightness alpha: 1.0f ];
+	resultColor = [UIColor colorWithHue: hue
+	                         saturation: saturation
+	                         brightness: brightness
+	                              alpha: 1.0f];
 	
-	[ self didChangeValueForKey: @"resultColor" ];
+	[self didChangeValueForKey: @"resultColor"];
 	
 	resultColorView.backgroundColor = resultColor;
 	
-	[ self informDelegateDidChangeColor ];
+	[self informDelegateDidChangeColor];
 }
 
 //------------------------------------------------------------------------------
 
 - (void) setResultColor: (UIColor*) newValue
 {
-	if( ![ resultColor isEqual: newValue ] ) {
+	if (![resultColor isEqual: newValue]) {
 		resultColor = newValue;
 		
 		float h = hue;
-		HSVFromUIColor( newValue, &h, &saturation, &brightness );
+		HSVFromUIColor(newValue, &h, &saturation, &brightness);
 		
-		if( h != hue ) {
+		if (h != hue) {
 			hue = h;
 			
 			barPicker.value = hue;
@@ -246,11 +249,11 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 			squarePicker.hue = hue;
 		}
 		
-		squarePicker.value = CGPointMake( saturation, brightness );
-
+		squarePicker.value = CGPointMake(saturation, brightness);
+		
 		resultColorView.backgroundColor = resultColor;
-
-		[ self informDelegateDidChangeColor ];
+		
+		[self informDelegateDidChangeColor];
 	}
 }
 
@@ -258,7 +261,7 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 - (void) setSourceColor: (UIColor*) newValue
 {
-	if( ![ sourceColor isEqual: newValue ] ) {
+	if (![sourceColor isEqual: newValue]) {
 		sourceColor = newValue;
 		
 		sourceColorView.backgroundColor = sourceColor;
@@ -268,12 +271,12 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 }
 
 //------------------------------------------------------------------------------
-#pragma mark	UIViewController( UIPopoverController ) methods
+#pragma mark	UIViewController(UIPopoverController) methods
 //------------------------------------------------------------------------------
 
 - (CGSize) contentSizeForViewInPopover
 {
-	return [ [ self class ] idealSizeForViewInPopover ];
+	return [[self class] idealSizeForViewInPopover];
 }
 
 //------------------------------------------------------------------------------

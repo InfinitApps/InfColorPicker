@@ -40,19 +40,19 @@ Example
 
 	- (void) changeColor
 	{
-		InfColorPickerController* picker = [ InfColorPickerController colorPickerViewController ];
+		InfColorPickerController* picker = [InfColorPickerController colorPickerViewController];
 		
 		picker.sourceColor = self.color;
 		picker.delegate = self;
 		
-		[ picker presentModallyOverViewController: self ];
+		[picker presentModallyOverViewController: self];
 	}
 
 	- (void) colorPickerControllerDidFinish: (InfColorPickerController*) picker
 	{
 		self.color = picker.resultColor;
 		
-		[ self dismissModalViewControllerAnimated: YES ];
+		[self dismissModalViewControllerAnimated: YES];
 	}
 
 */

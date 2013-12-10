@@ -28,7 +28,8 @@
 static CGImageRef createContentImage()
 {
 	float hsv[] = { 0.0f, 1.0f, 1.0f };
-	return createHSVBarContentImage( InfComponentIndexHue, hsv );
+	
+	return createHSVBarContentImage(InfComponentIndexHue, hsv);
 }
 
 //------------------------------------------------------------------------------
@@ -37,12 +38,12 @@ static CGImageRef createContentImage()
 {
 	CGImageRef image = createContentImage();
 	
-	if( image ) {
+	if (image) {
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		
-		CGContextDrawImage( context, [ self bounds ], image );
-	
-		CGImageRelease( image );
+		CGContextDrawImage(context, [self bounds], image);
+		
+		CGImageRelease(image);
 	}
 }
 
@@ -69,17 +70,19 @@ static CGImageRef createContentImage()
 
 - (void) layoutSubviews
 {
-	if( indicator == nil ) {
+	if (indicator == nil) {
 		CGFloat kIndicatorSize = 24.0f;
-		indicator = [ [ InfColorIndicatorView alloc ] initWithFrame: CGRectMake( 0, 0, kIndicatorSize, kIndicatorSize ) ];
-		[ self addSubview: indicator ];
+		indicator = [[InfColorIndicatorView alloc] initWithFrame: CGRectMake(0, 0, kIndicatorSize, kIndicatorSize)];
+		[self addSubview: indicator];
 	}
 	
-	indicator.color = [ UIColor colorWithHue: value saturation: 1.0f 
-								  brightness: 1.0f alpha: 1.0f ];
+	indicator.color = [UIColor colorWithHue: value
+	                             saturation: 1.0f
+	                             brightness: 1.0f
+	                                  alpha: 1.0f];
 	
-	CGFloat indicatorLoc = kContentInsetX + ( self.value * ( self.bounds.size.width - 2 * kContentInsetX ) );
-	indicator.center = CGPointMake( indicatorLoc, CGRectGetMidY( self.bounds ) );
+	CGFloat indicatorLoc = kContentInsetX + (self.value * (self.bounds.size.width - 2 * kContentInsetX) );
+	indicator.center = CGPointMake(indicatorLoc, CGRectGetMidY(self.bounds) );
 }
 
 //------------------------------------------------------------------------------
@@ -88,11 +91,11 @@ static CGImageRef createContentImage()
 
 - (void) setValue: (float) newValue
 {
-	if( newValue != value ) {
+	if (newValue != value) {
 		value = newValue;
 		
-		[ self sendActionsForControlEvents: UIControlEventValueChanged ];
-		[ self setNeedsLayout ];
+		[self sendActionsForControlEvents: UIControlEventValueChanged];
+		[self setNeedsLayout];
 	}
 }
 
@@ -100,30 +103,30 @@ static CGImageRef createContentImage()
 #pragma mark	Tracking
 //------------------------------------------------------------------------------
 
-- (void) trackIndicatorWithTouch: (UITouch*) touch 
+- (void) trackIndicatorWithTouch: (UITouch*) touch
 {
-	float percent = ( [ touch locationInView: self ].x - kContentInsetX ) 
-				  / ( self.bounds.size.width - 2 * kContentInsetX );
+	float percent = ([touch locationInView: self].x - kContentInsetX)
+	/ (self.bounds.size.width - 2 * kContentInsetX);
 	
-	self.value = pin( 0.0f, percent, 1.0f );
+	self.value = pin(0.0f, percent, 1.0f);
 }
 
 //------------------------------------------------------------------------------
 
 - (BOOL) beginTrackingWithTouch: (UITouch*) touch
-					  withEvent: (UIEvent*) event
+                      withEvent: (UIEvent*) event
 {
-	[ self trackIndicatorWithTouch: touch ];
+	[self trackIndicatorWithTouch: touch];
 	
 	return YES;
 }
 
 //------------------------------------------------------------------------------
 
-- (BOOL) continueTrackingWithTouch: (UITouch*) touch 
-						 withEvent: (UIEvent*) event
+- (BOOL) continueTrackingWithTouch: (UITouch*) touch
+                         withEvent: (UIEvent*) event
 {
-	[ self trackIndicatorWithTouch: touch ];
+	[self trackIndicatorWithTouch: touch];
 	
 	return YES;
 }

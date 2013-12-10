@@ -25,13 +25,13 @@
 
 //------------------------------------------------------------------------------
 
-- (BOOL) application: (UIApplication*) application
-	didFinishLaunchingWithOptions: (NSDictionary*) launchOptions
+- (BOOL)              application: (UIApplication*) application
+    didFinishLaunchingWithOptions: (NSDictionary*) launchOptions
 {
-    [ window addSubview: viewController.view ];
-    [ window makeKeyAndVisible ];
+	[window addSubview: viewController.view];
+	[window makeKeyAndVisible];
 	
-    return YES;
+	return YES;
 }
 
 //------------------------------------------------------------------------------

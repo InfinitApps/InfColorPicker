@@ -27,27 +27,27 @@
 	float brightness;
 }
 
-	// Public API:
+// Public API:
 
 + (InfColorPickerController*) colorPickerViewController;
 + (CGSize) idealSizeForViewInPopover;
 
 - (void) presentModallyOverViewController: (UIViewController*) controller;
 
-@property( strong, nonatomic ) UIColor* sourceColor;
-@property( strong, nonatomic ) UIColor* resultColor;
+@property (strong, nonatomic) UIColor* sourceColor;
+@property (strong, nonatomic) UIColor* resultColor;
 
-@property( weak, nonatomic ) id< InfColorPickerControllerDelegate > delegate;
+@property (weak, nonatomic) id <InfColorPickerControllerDelegate> delegate;
 
-	// IB outlets:
+// IB outlets:
 
-@property( strong, nonatomic ) IBOutlet InfColorBarView* barView;
-@property( strong, nonatomic ) IBOutlet InfColorSquareView* squareView;
-@property( strong, nonatomic ) IBOutlet InfColorBarPicker* barPicker;
-@property( strong, nonatomic ) IBOutlet InfColorSquarePicker* squarePicker;
-@property( strong, nonatomic ) IBOutlet UIView* sourceColorView;
-@property( strong, nonatomic ) IBOutlet UIView* resultColorView;
-@property( strong, nonatomic ) IBOutlet UINavigationController* navController;
+@property (strong, nonatomic) IBOutlet InfColorBarView* barView;
+@property (strong, nonatomic) IBOutlet InfColorSquareView* squareView;
+@property (strong, nonatomic) IBOutlet InfColorBarPicker* barPicker;
+@property (strong, nonatomic) IBOutlet InfColorSquarePicker* squarePicker;
+@property (strong, nonatomic) IBOutlet UIView* sourceColorView;
+@property (strong, nonatomic) IBOutlet UIView* resultColorView;
+@property (strong, nonatomic) IBOutlet UINavigationController* navController;
 
 @end
 

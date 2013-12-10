@@ -16,7 +16,7 @@
 
 @interface InfColorIndicatorView : UIView
 
-@property( strong, nonatomic ) UIColor* color;
+@property (strong, nonatomic) UIColor* color;
 
 @end
 

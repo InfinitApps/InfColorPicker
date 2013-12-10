@@ -16,7 +16,7 @@
 
 @interface InfSourceColorView : UIControl
 
-@property( nonatomic ) BOOL trackingInside;
+@property (nonatomic) BOOL trackingInside;
 
 @end
 

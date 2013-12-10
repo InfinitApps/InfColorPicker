@@ -18,8 +18,8 @@
 
 @interface PickerSamplePadAppDelegate : NSObject< UIApplicationDelegate >
 
-@property( nonatomic, retain ) IBOutlet UIWindow* window;
-@property( nonatomic, retain ) IBOutlet PickerSamplePadViewController* viewController;
+@property (nonatomic) IBOutlet UIWindow* window;
+@property (nonatomic) IBOutlet PickerSamplePadViewController* viewController;
 
 @end
 

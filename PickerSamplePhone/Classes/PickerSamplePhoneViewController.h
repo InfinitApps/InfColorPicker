@@ -16,7 +16,7 @@
 
 //------------------------------------------------------------------------------
 
-@interface PickerSamplePhoneViewController : UIViewController< InfColorPickerControllerDelegate >
+@interface PickerSamplePhoneViewController : UIViewController <InfColorPickerControllerDelegate>
 
 - (IBAction) changeBackgroundColor;
 

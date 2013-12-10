@@ -22,17 +22,17 @@
 
 - (void) viewDidLoad
 {
-	[ super viewDidLoad ];
-
-	if( colors == nil ) {
-		colors = [ NSMutableArray array ];
+	[super viewDidLoad];
+	
+	if (colors == nil) {
+		colors = [NSMutableArray array];
 		
-		[ colors addObject: [ UIColor blackColor ] ];
-		[ colors addObject: [ UIColor redColor ] ];
-		[ colors addObject: [ UIColor greenColor ] ];
+		[colors addObject: [UIColor blackColor]];
+		[colors addObject: [UIColor redColor]];
+		[colors addObject: [UIColor greenColor]];
 	}
 	
-	self.contentSizeForViewInPopover = [ InfColorPickerController idealSizeForViewInPopover ];
+	self.contentSizeForViewInPopover = [InfColorPickerController idealSizeForViewInPopover];
 }
 
 //------------------------------------------------------------------------------
@@ -57,18 +57,19 @@
 {
 	static NSString* CellIdentifier = @"Cell";
 	
-	UITableViewCell* cell = [ tableView dequeueReusableCellWithIdentifier: CellIdentifier ];
-	if( cell == nil ) {
-		cell = [ [ UITableViewCell alloc ] initWithStyle: UITableViewCellStyleDefault
-										 reuseIdentifier: CellIdentifier ];
+	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
+	
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+		                              reuseIdentifier: CellIdentifier];
 	}
 	
 	// Configure the cell:
 	
-	if( indexPath.row <= 3 )	// just a sanity test
-		cell.textLabel.textColor = colors[ indexPath.row ];
+	if (indexPath.row <= 3)             // just a sanity test
+		cell.textLabel.textColor = colors[indexPath.row];
 	
-	cell.textLabel.text = [ NSString stringWithFormat: @"Color # %d", indexPath.row + 1 ];
+	cell.textLabel.text = [NSString stringWithFormat: @"Color # %d", indexPath.row + 1];
 	
 	return cell;
 }
@@ -79,17 +80,17 @@
 
 - (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-	UITableViewCell* cell = [ self.tableView cellForRowAtIndexPath: indexPath ];
+	UITableViewCell* cell = [self.tableView cellForRowAtIndexPath: indexPath];
 	
 	pickingColorIndex = indexPath.row;
 	
-	InfColorPickerController* picker = [ InfColorPickerController colorPickerViewController ];
+	InfColorPickerController* picker = [InfColorPickerController colorPickerViewController];
 	
-	picker.sourceColor = colors[ pickingColorIndex ];
+	picker.sourceColor = colors[pickingColorIndex];
 	picker.delegate = self;
 	picker.navigationItem.title = cell.textLabel.text;
 	
-	[ self.navigationController pushViewController: picker animated: YES ];
+	[self.navigationController pushViewController: picker animated: YES];
 }
 
 //------------------------------------------------------------------------------
@@ -98,11 +99,11 @@
 
 - (void) colorPickerControllerDidChangeColor: (InfColorPickerController*) controller
 {
-	NSUInteger indexes[ 2 ] = { 0, pickingColorIndex };
-	NSIndexPath* indexPath = [ NSIndexPath indexPathWithIndexes: indexes length: 2 ];
-	UITableViewCell* cell = [ self.tableView cellForRowAtIndexPath: indexPath ];
+	NSUInteger indexes[2] = { 0, pickingColorIndex };
+	NSIndexPath* indexPath = [NSIndexPath indexPathWithIndexes: indexes length: 2];
+	UITableViewCell* cell = [self.tableView cellForRowAtIndexPath: indexPath];
 	
-	colors[ pickingColorIndex ] = controller.resultColor;
+	colors[pickingColorIndex] = controller.resultColor;
 	
 	cell.textLabel.textColor = controller.resultColor;
 }

@@ -34,9 +34,10 @@
 
 - (void) updateContent
 {
-	CGImageRef imageRef = createSaturationBrightnessSquareContentImageWithHue( hue * 360 );
-	self.image = [ UIImage imageWithCGImage: imageRef ];
-	CGImageRelease( imageRef );
+	CGImageRef imageRef = createSaturationBrightnessSquareContentImageWithHue(hue * 360);
+	
+	self.image = [UIImage imageWithCGImage: imageRef];
+	CGImageRelease(imageRef);
 }
 
 //------------------------------------------------------------------------------
@@ -45,10 +46,10 @@
 
 - (void) setHue: (float) value
 {
-	if( value != hue || self.image == nil ) {
+	if (value != hue || self.image == nil) {
 		hue = value;
 		
-		[ self updateContent ];
+		[self updateContent];
 	}
 }
 
@@ -76,30 +77,32 @@
 
 - (void) setIndicatorColor
 {
-	if( indicator == nil )
+	if (indicator == nil)
 		return;
 	
-	indicator.color = [ UIColor colorWithHue: hue saturation: value.x 
-								  brightness: value.y alpha: 1.0f ];
+	indicator.color = [UIColor colorWithHue: hue
+	                             saturation: value.x
+	                             brightness: value.y
+	                                  alpha: 1.0f];
 }
 
 //------------------------------------------------------------------------------
 
 - (void) layoutSubviews
 {
-	if( indicator == nil ) {
+	if (indicator == nil) {
 		CGRect indicatorRect = { CGPointZero, { kIndicatorSize, kIndicatorSize } };
-		indicator = [ [ InfColorIndicatorView alloc ] initWithFrame: indicatorRect ];
-		[ self addSubview: indicator ];
+		indicator = [[InfColorIndicatorView alloc] initWithFrame: indicatorRect];
+		[self addSubview: indicator];
 	}
 	
-	[ self setIndicatorColor ];
+	[self setIndicatorColor];
 	
-	CGFloat indicatorX = kContentInsetX + ( self.value.x * ( self.bounds.size.width - 2 * kContentInsetX ) );
-	CGFloat indicatorY = self.bounds.size.height - kContentInsetY 
-									    - ( self.value.y * ( self.bounds.size.height - 2 * kContentInsetY ) );
+	CGFloat indicatorX = kContentInsetX + (self.value.x * (self.bounds.size.width - 2 * kContentInsetX));
+	CGFloat indicatorY = self.bounds.size.height - kContentInsetY
+					   - (self.value.y * (self.bounds.size.height - 2 * kContentInsetY));
 	
-	indicator.center = CGPointMake( indicatorX, indicatorY );
+	indicator.center = CGPointMake(indicatorX, indicatorY);
 }
 
 //------------------------------------------------------------------------------
@@ -108,10 +111,10 @@
 
 - (void) setHue: (float) newValue
 {
-	if( newValue != hue ) {
+	if (newValue != hue) {
 		hue = newValue;
 		
-		[ self setIndicatorColor ];
+		[self setIndicatorColor];
 	}
 }
 
@@ -119,11 +122,11 @@
 
 - (void) setValue: (CGPoint) newValue
 {
-	if( !CGPointEqualToPoint( newValue, value ) ) {
+	if (!CGPointEqualToPoint(newValue, value)) {
 		value = newValue;
 		
-		[ self sendActionsForControlEvents: UIControlEventValueChanged ];
-		[ self setNeedsLayout ];
+		[self sendActionsForControlEvents: UIControlEventValueChanged];
+		[self setNeedsLayout];
 	}
 }
 
@@ -131,19 +134,20 @@
 #pragma mark	Tracking
 //------------------------------------------------------------------------------
 
-- (void) trackIndicatorWithTouch: (UITouch*) touch 
+- (void) trackIndicatorWithTouch: (UITouch*) touch
 {
 	CGRect bounds = self.bounds;
 	
 	CGPoint touchValue;
-	touchValue.x = ( [ touch locationInView: self ].x - kContentInsetX ) 
-				   / ( bounds.size.width - 2 * kContentInsetX );
 	
-	touchValue.y = ( [ touch locationInView: self ].y - kContentInsetY ) 
-				   / ( bounds.size.height - 2 * kContentInsetY );
+	touchValue.x = ([touch locationInView: self].x - kContentInsetX)
+				 / (bounds.size.width - 2 * kContentInsetX);
 	
-	touchValue.x = pin( 0.0f, touchValue.x, 1.0f );
-	touchValue.y = 1.0f - pin( 0.0f, touchValue.y, 1.0f );
+	touchValue.y = ([touch locationInView: self].y - kContentInsetY)
+				 / (bounds.size.height - 2 * kContentInsetY);
+	
+	touchValue.x = pin(0.0f, touchValue.x, 1.0f);
+	touchValue.y = 1.0f - pin(0.0f, touchValue.y, 1.0f);
 	
 	self.value = touchValue;
 }
@@ -151,18 +155,18 @@
 //------------------------------------------------------------------------------
 
 - (BOOL) beginTrackingWithTouch: (UITouch*) touch
-					  withEvent: (UIEvent*) event
+                      withEvent: (UIEvent*) event
 {
-	[ self trackIndicatorWithTouch: touch ];
+	[self trackIndicatorWithTouch: touch];
 	return YES;
 }
 
 //------------------------------------------------------------------------------
 
-- (BOOL) continueTrackingWithTouch: (UITouch*) touch 
-						 withEvent: (UIEvent*) event
+- (BOOL) continueTrackingWithTouch: (UITouch*) touch
+                         withEvent: (UIEvent*) event
 {
-	[ self trackIndicatorWithTouch: touch ];
+	[self trackIndicatorWithTouch: touch];
 	return YES;
 }
 

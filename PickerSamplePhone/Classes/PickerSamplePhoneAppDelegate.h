@@ -16,10 +16,10 @@
 
 //------------------------------------------------------------------------------
 
-@interface PickerSamplePhoneAppDelegate : NSObject< UIApplicationDelegate >
+@interface PickerSamplePhoneAppDelegate : NSObject <UIApplicationDelegate>
 
-@property( nonatomic, strong ) IBOutlet UIWindow* window;
-@property( nonatomic, strong ) IBOutlet PickerSamplePhoneViewController* viewController;
+@property (nonatomic, strong) IBOutlet UIWindow* window;
+@property (nonatomic, strong) IBOutlet PickerSamplePhoneViewController* viewController;
 
 @end
 
