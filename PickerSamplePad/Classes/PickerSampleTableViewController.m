@@ -69,7 +69,7 @@
 	
 	// Configure the cell:
 	
-	if (indexPath.row <= 3)             // just a sanity test
+	if (indexPath.row < colors.count)             // just a sanity test
 		cell.textLabel.textColor = colors[indexPath.row];
 	
 	cell.textLabel.text = [NSString stringWithFormat: @"Color # %d", indexPath.row + 1];

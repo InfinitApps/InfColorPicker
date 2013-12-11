@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  MainViewController.m
+//  InfColorPickerController.m
 //  InfColorPicker
 //
 //  Created by Troy Gaul on 7 Aug 2010.
@@ -49,8 +49,6 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 //==============================================================================
 
 @interface InfColorPickerController ()
-
-// IB outlets:
 
 @property (nonatomic) IBOutlet InfColorBarView* barView;
 @property (nonatomic) IBOutlet InfColorSquareView* squareView;
