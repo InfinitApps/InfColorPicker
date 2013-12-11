@@ -123,23 +123,6 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 
 //------------------------------------------------------------------------------
 
-- (void) viewDidUnload
-{
-	[super viewDidUnload];
-	
-	// Release any retained subviews of the main view.
-	
-	self.barView = nil;
-	self.squareView = nil;
-	self.barPicker = nil;
-	self.squarePicker = nil;
-	self.sourceColorView = nil;
-	self.resultColorView = nil;
-	self.navController = nil;
-}
-
-//------------------------------------------------------------------------------
-
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
 {
 	return interfaceOrientation == UIInterfaceOrientationPortrait;
