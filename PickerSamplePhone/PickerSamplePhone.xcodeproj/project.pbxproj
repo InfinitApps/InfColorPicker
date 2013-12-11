@@ -15,6 +15,7 @@
 		2899E5220DE3E06400AC0155 /* PickerSamplePhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* PickerSamplePhoneViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* PickerSamplePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* PickerSamplePhoneViewController.m */; };
+		6913A78E1858D80600A5C092 /* InfColorPickerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6913A78D1858D80600A5C092 /* InfColorPickerNavigationController.m */; };
 		6923F3E613F481720051A217 /* InfColorBarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6923F3DA13F481720051A217 /* InfColorBarPicker.m */; };
 		6923F3E713F481720051A217 /* InfColorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6923F3DC13F481720051A217 /* InfColorIndicatorView.m */; };
 		6923F3E813F481720051A217 /* InfColorPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6923F3DE13F481720051A217 /* InfColorPickerController.m */; };
@@ -36,6 +37,8 @@
 		28D7ACF60DDB3853001CB0EB /* PickerSamplePhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PickerSamplePhoneViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		28D7ACF70DDB3853001CB0EB /* PickerSamplePhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PickerSamplePhoneViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		6913A78C1858D80600A5C092 /* InfColorPickerNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfColorPickerNavigationController.h; sourceTree = "<group>"; };
+		6913A78D1858D80600A5C092 /* InfColorPickerNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfColorPickerNavigationController.m; sourceTree = "<group>"; };
 		6923F3D913F481720051A217 /* InfColorBarPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InfColorBarPicker.h; sourceTree = "<group>"; };
 		6923F3DA13F481720051A217 /* InfColorBarPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InfColorBarPicker.m; sourceTree = "<group>"; };
 		6923F3DB13F481720051A217 /* InfColorIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InfColorIndicatorView.h; sourceTree = "<group>"; };
@@ -130,14 +133,16 @@
 		6923F3D813F481720051A217 /* InfColorPicker */ = {
 			isa = PBXGroup;
 			children = (
-				69F47A3114181FB700E29503 /* InfColorPicker.h */,
-				6923F3DD13F481720051A217 /* InfColorPickerController.h */,
-				6923F3DE13F481720051A217 /* InfColorPickerController.m */,
-				6923F3DF13F481720051A217 /* InfColorPickerView.xib */,
 				6923F3D913F481720051A217 /* InfColorBarPicker.h */,
 				6923F3DA13F481720051A217 /* InfColorBarPicker.m */,
 				6923F3DB13F481720051A217 /* InfColorIndicatorView.h */,
 				6923F3DC13F481720051A217 /* InfColorIndicatorView.m */,
+				69F47A3114181FB700E29503 /* InfColorPicker.h */,
+				6923F3DD13F481720051A217 /* InfColorPickerController.h */,
+				6923F3DE13F481720051A217 /* InfColorPickerController.m */,
+				6913A78C1858D80600A5C092 /* InfColorPickerNavigationController.h */,
+				6913A78D1858D80600A5C092 /* InfColorPickerNavigationController.m */,
+				6923F3DF13F481720051A217 /* InfColorPickerView.xib */,
 				6923F3E013F481720051A217 /* InfColorSquarePicker.h */,
 				6923F3E113F481720051A217 /* InfColorSquarePicker.m */,
 				6923F3E213F481720051A217 /* InfHSBSupport.h */,
@@ -221,6 +226,7 @@
 				6923F3E713F481720051A217 /* InfColorIndicatorView.m in Sources */,
 				6923F3E813F481720051A217 /* InfColorPickerController.m in Sources */,
 				6923F3EA13F481720051A217 /* InfColorSquarePicker.m in Sources */,
+				6913A78E1858D80600A5C092 /* InfColorPickerNavigationController.m in Sources */,
 				6923F3EB13F481720051A217 /* InfHSBSupport.m in Sources */,
 				6923F3EC13F481720051A217 /* InfSourceColorView.m in Sources */,
 			);

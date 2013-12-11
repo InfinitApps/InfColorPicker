@@ -14,6 +14,7 @@
 
 #import "InfColorBarPicker.h"
 #import "InfColorSquarePicker.h"
+#import "InfColorPickerNavigationController.h"
 #import "InfHSBSupport.h"
 
 //------------------------------------------------------------------------------
@@ -103,6 +104,23 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 
 //------------------------------------------------------------------------------
 
+- (void) presentModallyOverViewController: (UIViewController*) controller
+{
+	UINavigationController* nav = [[InfColorPickerNavigationController alloc] initWithRootViewController: self];
+	
+	nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+																						   target: self
+																						   action: @selector(done:)];
+	
+	[controller presentViewController: nav animated: YES completion: nil];
+}
+
+//------------------------------------------------------------------------------
+#pragma mark	UIViewController methods
+//------------------------------------------------------------------------------
+
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
@@ -125,22 +143,17 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
 {
-	return interfaceOrientation == UIInterfaceOrientationPortrait;
+	return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 //------------------------------------------------------------------------------
 
-- (void) presentModallyOverViewController: (UIViewController*) controller
+- (NSUInteger) supportedInterfaceOrientations
 {
-	UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController: self];
-	
-	nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemDone 
-																						   target: self 
-																						   action: @selector(done:)];
-	
-	[controller presentViewController: nav animated: YES completion: nil];
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+		return UIInterfaceOrientationMaskAll;
+	else
+		return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
 }
 
 //------------------------------------------------------------------------------
