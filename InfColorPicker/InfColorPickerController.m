@@ -155,6 +155,13 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
 }
 
 //------------------------------------------------------------------------------
+
+- (UIRectEdge) edgesForExtendedLayout
+{
+	return UIRectEdgeNone;
+}
+
+//------------------------------------------------------------------------------
 #pragma mark	IB actions
 //------------------------------------------------------------------------------
 
